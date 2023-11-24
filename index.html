@@ -1,16 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/mystyles.css">
-    <title>Foundation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.6.3/css/foundation.min.css">
+    <style>
+        /* Customize the sidebar color and position */
+        .sidebar {
+            background-color: #888888; /* Grey color */
+            color: white;
+            padding-top: 20px;
+            height: 100vh; /* Full height of the viewport */
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align items to the left side */
+        }
+
+        /* Customize other styles as needed */
+        .sidebar a {
+            color: #ffffff;
+            font-size: x-large;
+            text-align: center; /* Center text horizontally */
+        }
+
+        .top {
+            font-size: larger;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .poepje img {
+            max-width: 100px; /* Set the maximum width for the image */
+            height: auto; /* Maintain the aspect ratio */
+            border-radius: 50%; /* Make the image round */
+        }
+
+        .aryan-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px; /* Adjust the margin as needed */
+        }
+
+        .aryan img {
+            max-width: 300px; /* Set the maximum width for the image */
+            border-radius: 80%; /* Make the image round */
+            margin-right: 20px; /* Adjust the margin as needed */
+        }
+
+        /* Style for chart containers */
+        .chart-container {
+            margin: 20px 0;
+            max-width: 400px;
+            float: left;
+            margin-right: 20px;
+        }
+
+        /* Style for Coatch View section */
+        .coatch-view-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Add spacing between Coatch View elements */
+        .medium-6.cell {
+            margin-bottom: 20px;
+        }
+    </style>
+    <title>Foundation Sidebar</title>
 </head>
+
 <body>
-    <script src="node_modules/jquery/dist/jquery.js"></script>
-    <script src="node_modules/foundation-sites/dist/js/foundation.min.js"></script>
-    <script src="js/main.js"></script>
+    <div class="top">
+        <div class="top-bar">
+            <div class="top-bar-left">
+                <ul class="menu top">
+                    <li class="poepje"><img src="download.png" alt="logo"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="grid-container">
+        <div class="grid-x">
+            <!-- Sidebar -->
+            <style>
+                .menu.vertical li {
+                    margin-bottom: 20px; /* Pas deze waarde aan naar jouw voorkeur */
+                }
+            </style>
+
+            <div class="cell medium-3 text">
+                <div class="sidebar">
+                    <ul class="menu vertical">
+                        <li><a href="#home"><i class="fas fa-home"></i><a href="https://purmerend.jarvis.bit-academy.nl/a/dashboard">Home</a></li>
+                        <li><a href="#about"><i class="fas fa-info-circle"></i> <a href="index.html">Account</a></li>
+                        <li><a href="#services"><i class="fas fa-cogs"></i> <a href="https://purmerend.jarvis.bit-academy.nl/a/leaderboard">leaderboard</a></li>
+                        <li><a href="#contact"><i class="fas fa-envelope"></i> <a href="https://outlook.live.com/mail/0/">Contact</a></li></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="cell small-12 medium-10 medium-offset-">
+                <div class="aryan-container">
+                    <div class="aryan"><img src="aryan.png" alt="Aryan"></div>
+                    <div class="aryan-text">
+                        <h1>Aryan Lachman</h1>
+                    </div>
+                </div>
+                <p>School: Horizoncollege <br>Age: 16 <br>Over mij: Mijn naam is Aryan Lachman ik studeer bij <br> de
+                    bit bit-academy.</p>
+
+                <!-- Chart 1 -->
+                <div class="chart-container">
+                    <h2>Maandelijks</h2>
+                    <canvas id="lineChart1"></canvas>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+                    <script>
+                        var ctx1 = document.getElementById('lineChart1').getContext('2d');
+                        var myLineChart1 = new Chart(ctx1, {
+                            type: 'line',
+                            data: {
+
+                                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                                datasets: [{
+                                    label: 'Opdrachten gemaakt',
+                                    data: [20, 23, 24, 13, 30],
+                                    borderColor: '#2199e8',
+                                    borderWidth: 2,
+                                    fill: false
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+                </div>
+
+                <!-- Chart 2 -->
+                <div class="chart-container">
+                    <h2>Dagelijks</h2>
+                    <canvas id="barChart2"></canvas>
+                    <script>
+                        var ctx2 = document.getElementById('barChart2').getContext('2d');
+                        var myBarChart2 = new Chart(ctx2, {
+                            type: 'bar',
+                            data: {
+                                labels: ['Maandag', 'Disndag', 'Woendag', 'Donderdag', 'Vrijdag', 'Zaterdag'],
+                                datasets: [{
+                                    label: 'XP Verdient',
+                                    data: [12, 19, 3, 5, 2, 3],
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+                </div>
+
+                <!-- Chart 3 -->
+                <div class="chart-container">
+                    <h2>Trails</h2>
+                    <canvas id="doughnutChart3"></canvas>
+                    <script>
+                        var ctx3 = document.getElementById('doughnutChart3').getContext('2d');
+                        var myDoughnutChart3 = new Chart(ctx3, {
+                            type: 'doughnut',
+                            data: {
+                                labels: ['Afgekeurd', 'in afwachting', 'Afgerond'],
+                                datasets: [{
+                                    label: 'Opdrachten gemaakt',
+                                    data: [10, 20, 30],
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.5)',
+                                        'rgba(54, 162, 235, 0.5)',
+                                        'rgba(255, 206, 86, 0.5)'
+                                    ],
+                                    hoverOffset: 4
+                                }]
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid-x grid-margin-x coatch-view-container">
+        <div class="medium-6 cell">
+            <h3 class="text-align-center">Coatch View</h3>
+            <p>Voeg data toe</p>
+        </div>
+        <div class="medium-6 cell">
+            <label>Name
+                <select>
+                    <option value="option1">Maandelijks</option>
+                    <option value="option3">Dagelijks</option>
+                    <option value="option5">Trails</option>
+                </select>
+            </label>
+            <label>Getal
+                <input type="number" placeholder="0">
+            </label>
+            <label>
+                Message
+                <textarea placeholder="De opdracht was goed gedaan"></textarea>
+            </label>
+            <a href="index.html"><input type="submit" class="button expanded" value="Verstuur"></a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.6.3/js/vendor/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.6.3/js/vendor/what-input.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.6.3/js/foundation.min.js"></script>
+    <script>
+        // Initialize Foundation
+        $(document).foundation();
+    </script>
+
 </body>
+
 </html>
